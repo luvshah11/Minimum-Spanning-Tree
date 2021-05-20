@@ -1,5 +1,6 @@
 package minimalTrees;
 
+import java.util.PriorityQueue;
 import java.util.Queue;
 
 public class KruskalsAlgorithm 
@@ -8,7 +9,7 @@ public class KruskalsAlgorithm
 
 	public KruskalsAlgorithm (EdgeWeightedGraph G)
 	{
-		mst = new Queue<Edge>();
+		mst = new PriorityQueue<Edge>();
 		MinPQ<Edge> pq = new MinPQ<Edge>(G.edges());
 		UF uf = new UF(G.V());
 		while (!pq.isEmpty() && mst.size() < G.V()-1)
