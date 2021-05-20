@@ -28,7 +28,10 @@ public class EdgeWeightedGraph implements Graph<Integer> {
 			adj[v] = new ArrayList<Edge>();
 	}
 
-	//public EdgeWeightedGraph(InputStream in);
+//	public EdgeWeightedGraph(InputStream in)
+//	{
+//		
+//	}
 	// See Exercise 4.3.9.
 	public int V() 
 	{
@@ -58,7 +61,7 @@ public class EdgeWeightedGraph implements Graph<Integer> {
 	}
 	// See page 609.
 	
-	//impliment Graph methods
+	//Implement Graph methods
 	@Override
 	public int getNumberOfVerticies()
 	{
