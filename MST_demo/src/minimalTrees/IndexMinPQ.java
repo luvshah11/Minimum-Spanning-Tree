@@ -355,9 +355,9 @@ public class IndexMinPQ<Key extends Comparable<Key>> implements Iterable<Integer
         // delete and print each key
         while (!pq.isEmpty()) {
             int i = pq.delMin();
-            StdOut.println(i + " " + strings[i]);
+            System.out.println(i + " " + strings[i]);
         }
-        StdOut.println();
+        System.out.println();
 
         // reinsert the same strings
         for (int i = 0; i < strings.length; i++) {
