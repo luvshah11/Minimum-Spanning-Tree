@@ -16,16 +16,16 @@ import java.util.Collection;
 
 public class EdgeWeightedGraph implements Graph<Integer> {
 
-	private final int V; // number of vertices
-	private int E; // number of edges
+	private final int vertexCount; // number of vertices
+	private int totalEdges; // number of edges
 	private Collection<Edge>[] adj; // adjacency lists
 
-	public EdgeWeightedGraph(Integer V) {
-		this.V = V;
-		this.E = 0;
-		adj = (Collection<Edge>[]) new Collection[V];
-		for (int v = 0; v < V; v++)
-			adj[v] = new ArrayList<Edge>();
+	public EdgeWeightedGraph(Integer totalVertices) {
+		this.vertexCount = totalVertices;
+		this.totalEdges = 0;
+		adj = (Collection<Edge>[]) new Collection[totalVertices];
+		for (int vertex = 0; vertex < totalVertices; vertex++)
+			adj[vertex] = new ArrayList<Edge>();
 	}
 
 //	public EdgeWeightedGraph(InputStream in)
@@ -33,21 +33,21 @@ public class EdgeWeightedGraph implements Graph<Integer> {
 //		
 //	}
 	// See Exercise 4.3.9.
-	public int V() 
+	public int numberofVertices() 
 	{
-		return V;
+		return vertexCount;
 	}
 
-	public int E() {
-		return E;
+	public int numberofEdges() {
+		return totalEdges;
 	}
 
-	public void addEdge(Edge e) 
+	public void addEdge(Edge newEdge) 
 	{
-		int v = e.either(), w = e.other(v);
-		adj[v].add(e);
-		adj[w].add(e);
-		E++;
+		int vertex1 = newEdge.either(), vertex2 = newEdge.other(vertex1);
+		adj[vertex1].add(newEdge);
+		adj[vertex2].add(newEdge);
+		totalEdges++;
 	}
 
 	public Iterable<Edge> adj(int v)
@@ -57,30 +57,15 @@ public class EdgeWeightedGraph implements Graph<Integer> {
 
 	public Iterable<Edge> edges()
 	{
+		Collection<Edge> edges = new ArrayList<Edge>();
+		for(int v = 0; v<vertexCount; v++) {
+				
+		}
 		return new ArrayList<Edge>() ;
 	}
 	// See page 609.
-	
-	//Implement Graph methods
-	@Override
-	public int getNumberOfVerticies()
-	{
-		return 0;
-	}
-	@Override
-	public int getNumberOfEdges()
-	{
-		return 0;
-	}
 
-	@Override
-	public boolean addEdge(Integer from, Integer to) {
-		return false;
-	}
 
-	@Override
-	public boolean removeEdge(Integer from, Integer to) {
-		return false;
-	}
+
 
 }

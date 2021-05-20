@@ -1,23 +1,27 @@
-package minimalTrees;
+	package minimalTrees;
 
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
 public class KruskalsAlgorithm {
 	private Queue<Edge> mst;
 
-	public KruskalsAlgorithm(EdgeWeightedGraph G) {
+	public KruskalsAlgorithm(EdgeWeightedGraph weightedGraph) {
 		mst = new PriorityQueue<Edge>();
-		PriorityQueue<Edge> pq = new PriorityQueue<Edge>(G.getNumberOfEdges(), new CompareEdges());
-		UnionFind uf = new UnionFind(G.V());
-		while (!pq.isEmpty() && mst.size() < G.V() - 1) {
-			Edge e = pq.poll(); // Get min weight edge on pq
-			int v = e.either(), w = e.other(v); // and its vertices.
-			if (uf.connected(v, w))
+		PriorityQueue<Edge> mstQueue = new PriorityQueue<Edge>(weightedGraph.numberofEdges(), new CompareEdges());
+		UnionFind uf = new UnionFind(weightedGraph.numberofVertices());
+		while (!mstQueue.isEmpty() && mst.size() < weightedGraph.numberofVertices() - 1) {
+			Edge edge = mstQueue.poll(); // Get min weight edge on pq
+			
+			int vertex1 = edge.either(), vertex2 = edge.other(vertex1); // and whichever vertice matches the edge value
+			
+			if (uf.connected(vertex1, vertex2)) { //if they are in a cycle, ignore those edges
 				continue; // Ignore ineligible edges.
-			uf.union(v, w); // Merge components.
-			mst.add(e); // Add edge to mst.
+			}
+			uf.union(vertex1, vertex2); // Merge components.
+			mst.add(edge); // Add edge to mst.
 		}
 	}
 
@@ -25,8 +29,15 @@ public class KruskalsAlgorithm {
 		return mst;
 	}
 
-	// public double weight() // See Exercise 4.3.31.
-
+	public double weight(PriorityQueue<Edge> mst){
+		double totalWeight = 0; //initialize weight value
+		Iterator<Edge> weightIterator = mst.iterator(); //create iterator to iterate through MST array
+			while(weightIterator.hasNext()) { //iterator loop
+				totalWeight = totalWeight + weightIterator.next().weight(); //for every edge in the MST, add the weight() value of that edge to the total
+			}
+		return totalWeight; //return total weight
+	}
+	
 }
 
 //https://www.geeksforgeeks.org/comparator-interface-java/
@@ -34,8 +45,8 @@ public class KruskalsAlgorithm {
  class CompareEdges implements Comparator<Edge> {
 
 	@Override
-	public int compare(Edge o1, Edge o2) {
-		return o1.compareTo(o2);
+	public int compare(Edge edge1, Edge edge2) {
+		return edge1.compareTo(edge2);
 	}
 
 }
