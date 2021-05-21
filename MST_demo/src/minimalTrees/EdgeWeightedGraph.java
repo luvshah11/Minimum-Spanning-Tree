@@ -7,19 +7,23 @@ package minimalTrees;
 //+ E():int number of edge
 //+addEdge(Edge e): void add edge e to this graph
 //+adj(int v):Iterable<Edge>  edges incident to v
-//+ edges():Iterable<Edge> all of this graph’s edges
+//+ edges():Iterable<Edge> all of this graphï¿½s edges
 //+toString():String string representation
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.Collections;
 import java.util.TreeSet;
+import java.io.InputStreamReader;
+import java.util.stream.Collectors;
+
+
 public class EdgeWeightedGraph{
-	
 	private final int vertexCount; // number of vertices
 	private int totalEdges; // number of edges
 	private double totalWeight;
@@ -31,12 +35,52 @@ public class EdgeWeightedGraph{
 		adj = (Collection<Edge>[]) new Collection[totalVertices];
 		for (int vertex = 0; vertex < totalVertices; vertex++)
 			adj[vertex] = new ArrayList<Edge>();
-	}
 
-//	public EdgeWeightedGraph(InputStream in)
-//	{
-//		
-//	}
+	}
+	
+	
+    /*
+     *  INPUT FORMAT:
+     *  <num_of_verts>
+     *  <num_of_edges>
+     *  <vert1> <vert2> <weight>
+     *  <vert1> <vert2> <weight>
+     *  <vert1> <vert2> <weight>
+     *  ...
+     * 
+     */
+	public EdgeWeightedGraph(InputStream in) throws IOException
+	{
+		
+
+
+		 // https://stackoverflow.com/questions/309424/how-do-i-read-convert-an-inputstream-into-a-string-in-java
+		 String result = new BufferedReader(new InputStreamReader(in))
+				   .lines().collect(Collectors.joining("\n"));
+		 
+		
+		 String lines[] = result.split("\n");
+		 this.vertexCount = Integer.parseInt(lines[0]);
+		 this.totalEdges = Integer.parseInt(lines[1]);
+		 adj = new ArrayList[this.vertexCount];
+			for (int v = 0; v < this.vertexCount; v++)
+				adj[v] = new ArrayList<Edge>();
+		 
+		 
+		 for(int i = 2; i < lines.length; i++) {
+			 String cols[] = lines[i].split(" ");
+			 int v1 = Integer.parseInt(cols[0]);
+			 int v2 = Integer.parseInt(cols[1]);
+			 int w  = Integer.parseInt(cols[2]);
+			 Edge tmp = new Edge(v1, v2, w);
+			 adj[v1].add(tmp);
+			 adj[v2].add(tmp);
+			 totalEdges++;
+			 
+		 }
+		
+		
+	}
 	// See Exercise 4.3.9.
 	public int getNumberOfVerticies() 
 	{
@@ -47,7 +91,7 @@ public class EdgeWeightedGraph{
 		return totalEdges;
 	}
 
-	public void addEdge(Edge newEdge) 
+	public void addEssdge(Edge newEdge) 
 	{
 		//each edge needs 2 verticies 
 		int vertex1 = newEdge.either(), vertex2 = newEdge.other(vertex1);
@@ -80,4 +124,27 @@ public class EdgeWeightedGraph{
 		}
 		return edges(); //return edge collection
 	}
+
+	// See page 609.
+	
+	//Implement Graph methods
+
+	
+	//citation https://algs4.cs.princeton.edu/43mst/EdgeWeightedGraph.java.html
+	public String toString(){ 
+	    StringBuilder s = new StringBuilder();
+	    s.append(this.getNumberOfVerticies()+ " " + this.getNumberOfEdges() + "\n");
+	    for (int v = 0; v < this.V(); v++)
+	    {
+	        s.append(v + " : ");
+	        for (Edge e: this.adj(v)) 
+	        {
+	            s.append(e.toString() + " ");
+	        }
+	        s.append("\n");
+	    }
+	    return s.toString();
+
+	}
+
 }

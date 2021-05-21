@@ -7,9 +7,11 @@ import java.util.Queue;
 
 public class KruskalsAlgorithm {
 	private Queue<Edge> mst;
+	private double weight;
 
 	public KruskalsAlgorithm(EdgeWeightedGraph weightedGraph) {
 		mst = new PriorityQueue<Edge>();
+
 		PriorityQueue<Edge> mstQueue = new PriorityQueue<Edge>(weightedGraph.getNumberOfEdges(), new CompareEdges());
 		UnionFind uf = new UnionFind(weightedGraph.getNumberOfVerticies());
 		while (!mstQueue.isEmpty() && mst.size() < weightedGraph.getNumberOfVerticies() - 1) {
@@ -23,6 +25,13 @@ public class KruskalsAlgorithm {
 			uf.union(vertex1, vertex2); // Merge components.
 			mst.add(edge); // Add edge to mst.
 		}
+		
+		//set weight()
+		this.mst.forEach(e -> { //lambda ( Parameter -> Expression) Example: Suppose I have a list of objects to print
+			if(e != null)											//List<int> happyList
+				weight += e.weight();								//happyList.forEach(for each element in the list -< perform some function)
+			else													//its like a for loop, but nerdy-er
+				weight = 0;});
 	}
 
 	public Iterable<Edge> edges() {
@@ -30,15 +39,19 @@ public class KruskalsAlgorithm {
 		return mst;
 	}
 
-	public double weight(PriorityQueue<Edge> mst){
-		double totalWeight = 0; //initialize weight value
-		Iterator<Edge> weightIterator = mst.iterator(); //create iterator to iterate through MST array
-			while(weightIterator.hasNext()) { //iterator loop
-				totalWeight = totalWeight + weightIterator.next().weight(); //for every edge in the MST, add the weight() value of that edge to the total
-			}
-		return totalWeight; //return total weight
+	public double weight() // See Exercise 4.3.31.
+	{
+		return weight; //see constructor for assignment
 	}
 	
+	public String toString(){ 
+	    StringBuilder s = new StringBuilder();
+	    //lambda for every edge, print its vertices and weight 
+	    mst.forEach(e -> s.append("From vertex "+ e.other(e.either()) + ", to vertex " + e.either() + ", weighes: " + e.weight()));
+	    return s.toString();
+	}
+
+
 }
 
 //https://www.geeksforgeeks.org/comparator-interface-java/
