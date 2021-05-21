@@ -14,7 +14,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class EdgeWeightedGraph implements Graph<Integer> {
+public class EdgeWeightedGraph {
 
 	private final int V; // number of vertices
 	private int E; // number of edges
@@ -62,25 +62,30 @@ public class EdgeWeightedGraph implements Graph<Integer> {
 	// See page 609.
 	
 	//Implement Graph methods
-	@Override
 	public int getNumberOfVerticies()
 	{
 		return 0;
 	}
-	@Override
+
 	public int getNumberOfEdges()
 	{
 		return 0;
 	}
-
-	@Override
-	public boolean addEdge(Integer from, Integer to) {
-		return false;
-	}
-
-	@Override
-	public boolean removeEdge(Integer from, Integer to) {
-		return false;
+	
+	//citation https://algs4.cs.princeton.edu/43mst/EdgeWeightedGraph.java.html
+	public String toString(){ 
+	    StringBuilder s = new StringBuilder();
+	    s.append(this.V() + " " + this.E() + "\n");
+	    for (int v = 0; v < this.V(); v++)
+	    {
+	        s.append(v + " : ");
+	        for (Edge e: this.adj(v)) 
+	        {
+	            s.append(e.toString() + " ");
+	        }
+	        s.append("\n");
+	    }
+	    return s.toString();
 	}
 
 }
