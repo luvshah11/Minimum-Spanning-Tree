@@ -59,10 +59,10 @@ public class EdgeWeightedGraph{
 		 
 		
 		 String lines[] = result.split("\n");
-		 this.V = Integer.parseInt(lines[0]);
-		 this.E = Integer.parseInt(lines[1]);
-		 adj = new ArrayList[V];
-			for (int v = 0; v < V; v++)
+		 this.vertexCount = Integer.parseInt(lines[0]);
+		 this.totalEdges = Integer.parseInt(lines[1]);
+		 adj = new ArrayList[this.vertexCount];
+			for (int v = 0; v < this.vertexCount; v++)
 				adj[v] = new ArrayList<Edge>();
 		 
 		 
@@ -74,7 +74,7 @@ public class EdgeWeightedGraph{
 			 Edge tmp = new Edge(v1, v2, w);
 			 adj[v1].add(tmp);
 			 adj[v2].add(tmp);
-			 E++;
+			 totalEdges++;
 			 
 		 }
 		
