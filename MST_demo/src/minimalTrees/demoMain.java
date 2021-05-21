@@ -10,6 +10,14 @@ public class demoMain {
 		/// Implement an EdgeWeigthed Graph object -
 		//Requires implementing other classes, Edge, and Graph
 		
+		EdgeWeightedGraph a = new EdgeWeightedGraph(0);
+		EdgeWeightedGraph b = new EdgeWeightedGraph(1);
+		EdgeWeightedGraph c = new EdgeWeightedGraph(-1);
+
+		EdgeWeightedGraph d = new EdgeWeightedGraph(5);
+		EdgeWeightedGraph e = new EdgeWeightedGraph(10);
+		EdgeWeightedGraph f = new EdgeWeightedGraph(50);
+		
 		///Implement Prim's Algorithm -
 		//In another class/interface, create a class called Prim's tree that generates an MST from prim's algorithm
 		//Include a Printing function to display what's in the class. 

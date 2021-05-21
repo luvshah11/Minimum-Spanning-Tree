@@ -10,20 +10,22 @@ public class PrimsAlgorithm {
 	private boolean[] marked; // true if v on tree
 	private IndexMinPQ<Double> pq; // eligible crossing edges
 
+
 	public PrimsAlgorithm(EdgeWeightedGraph G)
 	{
-		edgeTo = new Edge[G.V()];
-		distTo = new double[G.V()];
-		marked = new boolean[G.V()];
-		for (int v = 0; v < G.V(); v++)
+		edgeTo = new Edge[G.getNumberOfVerticies()];
+		distTo = new double[G.getNumberOfVerticies()];
+		marked = new boolean[G.getNumberOfVerticies()];
+		for (int v = 0; v < G.getNumberOfVerticies(); v++)
 			distTo[v] = Double.POSITIVE_INFINITY;
-		pq = new IndexMinPQ<Double>(G.V());
+		pq = new IndexMinPQ<Double>(G.getNumberOfVerticies());
 		distTo[0] = 0.0;
 		pq.insert(0, 0.0); // Initialize pq with 0, weight 0.
 		while (!pq.isEmpty())
 			visit(G, pq.delMin()); // Add closest vertex to tree.
+		
+		//this.pq.forEach(e -> System.out.println(e.toString()));
 	}
-
 	private void visit(EdgeWeightedGraph G, int v) { // Add v to tree; update data structures.
 		marked[v] = true;
 		for (Edge e : G.adj(v)) {
@@ -49,8 +51,22 @@ public class PrimsAlgorithm {
 		return mst;
 	}
 
+	public String toString()
+	{
+		StringBuilder s = new StringBuilder();
+	    //lambda for every edge, print its vertices and weight 
+	    this.edges().forEach(e -> s.append("From vertex "+ e.other(e.either()) + ", to vertex " + e.either() + ", weighes: " + e.weight()));
+	    
+	    return s.toString();
+	}
 	public double weight()
 	{
-		return 0;
+		double sum =0 ;
+		for(int x = 0; x < edgeTo.length; x++)
+		{
+			sum += edgeTo[x].weight();
+		}
+		return sum;
+
 	}
 }
