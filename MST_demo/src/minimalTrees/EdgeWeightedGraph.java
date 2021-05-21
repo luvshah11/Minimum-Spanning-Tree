@@ -11,15 +11,20 @@ package minimalTrees;
 //+toString():String string representation
 
 import java.io.InputStream;
+
 import java.util.ArrayList;
 import java.util.Collection;
-
+import java.util.Iterator;
+import java.util.Set;
+import java.util.Collections;
+import java.util.TreeSet;
 public class EdgeWeightedGraph{
 	
 	private final int vertexCount; // number of vertices
 	private int totalEdges; // number of edges
+	private double totalWeight;
 	private Collection<Edge>[] adj; // adjacency lists
-
+	private Set<Edge> edgeSet = new TreeSet<>(); // treeset to make no duplicate edges
 	public EdgeWeightedGraph(Integer totalVertices) {
 		this.vertexCount = totalVertices;
 		this.totalEdges = 0;
@@ -48,6 +53,7 @@ public class EdgeWeightedGraph{
 		int vertex1 = newEdge.either(), vertex2 = newEdge.other(vertex1);
 		adj[vertex1].add(newEdge);
 		adj[vertex2].add(newEdge);
+		totalWeight = totalWeight + newEdge.weight();
 		totalEdges++;
 	}
 
@@ -55,6 +61,12 @@ public class EdgeWeightedGraph{
 	{ 
 		return adj[vertex]; 
 	}
+	
+	//get the weight of the enitre edgeweighted graph
+	public double getWeight() {
+		return totalWeight;
+	}
+	
 	//return the iterable collection of edges on the edgeweightedgraph
 	public Iterable<Edge> edges()
 	{
