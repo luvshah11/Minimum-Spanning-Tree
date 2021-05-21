@@ -13,13 +13,13 @@ package minimalTrees;
 //+toString(): String 	print a string representation
 
 public class Edge implements Comparable<Edge> {
-	private final int v;// one vertex
-	private final int w; // the other vertex
+	private final int vertex1;// one vertex
+	private final int vertex2; // the other vertex
 	private final double weight; // edge weight
 
-	public Edge(int v, int w, double weight) {
-		this.v = v;
-		this.w = w;
+	public Edge(int vertex1, int vertex2, double weight) {
+		this.vertex1 = vertex1;
+		this.vertex2 = vertex2;
 		this.weight = weight;
 	}
 
@@ -28,29 +28,29 @@ public class Edge implements Comparable<Edge> {
 	}
 
 	public int either() {
-		return v;
+		return vertex1;
 	}
 
-	public int other(int vertex) {
-		if (vertex == v)
-			return w;
-		else if (vertex == w)
-			return v;
+	public int other(int vertex) { //takes in a vertex and checks if it is equal to vertex 1, since we want to get the other vertex return vertex 2. if its vertex 2 return vertex1. 
+		if (vertex == vertex1)
+			return vertex2;
+		else if (vertex == vertex2)
+			return vertex1;
 		else
 			throw new RuntimeException("Inconsistent edge");
 	}
 
-	public int compareTo(Edge that) {
-		if (this.weight() < that.weight())
+	public int compareTo(Edge otherEdge) {
+		if (this.weight() < otherEdge.weight())
 			return -1;
-		else if (this.weight() > that.weight())
+		else if (this.weight() > otherEdge.weight())
 			return +1;
 		else
 			return 0;
 	}
 
 	public String toString() {
-		return String.format("%d-%d %.2f", v, w, weight);
+		return String.format("%d-%d %.2f", vertex1, vertex2, weight);
 	}
 
 }

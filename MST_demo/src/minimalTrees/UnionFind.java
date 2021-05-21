@@ -11,37 +11,41 @@ public class UnionFind {
 
 	//pg 228 Algorithm 1.5
 	private int count;
-	private int id[];
-	private int[] sz; // size of component for roots (site indexed)
-	UnionFind(int N)
+	private int identifierArray[]; //array with vertexes being the position in the array 
+									//and the parent subgraph being the value stored on that position 
+	private int[] size; // size of component for roots (site indexed)
+	UnionFind(int numberofVertices)
 	{
-		count = N;
-		id = new int[N];
-		for (int i = 0; i < N; i++)
-			id[i] = i;
+		count = numberofVertices;
+		identifierArray = new int[numberofVertices];
+		for (int i = 0; i < numberofVertices; i++)
+			identifierArray[i] = i;
 		
-		sz = new int[N];
-		for (int i = 0; i < N; i++) sz[i] = 1;
+		size = new int[numberofVertices];
+		for (int i = 0; i < numberofVertices; i++) size[i] = 1;
 	}
-	void union(int p, int q)
+	void union(int vertex1, int vertex2) //union 2 roots on a graph together to have the same subgraph parent
 	{
-		int i = find(p);
-		int j = find(q);
+		int i = find(vertex1);
+		int j = find(vertex2);
 		if (i == j) return;
 		
 		// Make smaller root point to larger one.
-		if (sz[i] < sz[j]) { id[i] = j; sz[j] += sz[i]; }
-		else { id[j] = i; sz[i] += sz[j]; }
+		if (size[i] < size[j]) { identifierArray[i] = j; size[j] += size[i]; }
+		else { identifierArray[j] = i; size[i] += size[j]; }
 		count--;
 	}
-	int find(int p)
+	//find the subgraph a vertex is in 
+	int find(int vertex)
 	{
-		while (p != id[p]) p = id[p];
-		return p;
+		while (vertex != identifierArray[vertex]) {
+			vertex = identifierArray[vertex];
+		}
+		return vertex;
 	}
-	boolean connected(int p, int q)
+	boolean connected(int vertex1, int vertex2) //are these vertexes in the same subgraph?
 	{
-		return find(p) == find(q);
+		return find(vertex1) == find(vertex2);
 	}
 	int count()
 	{
