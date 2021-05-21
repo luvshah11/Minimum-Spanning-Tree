@@ -74,20 +74,11 @@ public class EdgeWeightedGraph{
 	// See page 609.
 	
 	//Implement Graph methods
-	public int getNumberOfVerticies()
-	{
-		return 0;
-	}
-
-	public int getNumberOfEdges()
-	{
-		return 0;
-	}
 	
 	//citation https://algs4.cs.princeton.edu/43mst/EdgeWeightedGraph.java.html
 	public String toString(){ 
 	    StringBuilder s = new StringBuilder();
-	    s.append(this.V() + " " + this.E() + "\n");
+	    s.append(this.getNumberOfVerticies()+ " " + this.getNumberOfEdges() + "\n");
 	    for (int v = 0; v < this.V(); v++)
 	    {
 	        s.append(v + " : ");
