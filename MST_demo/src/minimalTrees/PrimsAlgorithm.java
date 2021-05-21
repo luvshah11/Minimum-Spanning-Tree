@@ -12,12 +12,12 @@ public class PrimsAlgorithm {
 
 	public PrimsAlgorithm(EdgeWeightedGraph G)
 	{
-		edgeTo = new Edge[G.numberofVertices()];
-		distTo = new double[G.numberofVertices()];
-		marked = new boolean[G.numberofVertices()];
-		for (int v = 0; v < G.numberofVertices(); v++)
+		edgeTo = new Edge[G.getNumberOfVerticies()];
+		distTo = new double[G.getNumberOfVerticies()];
+		marked = new boolean[G.getNumberOfVerticies()];
+		for (int v = 0; v < G.getNumberOfVerticies(); v++)
 			distTo[v] = Double.POSITIVE_INFINITY;
-		pq = new IndexMinPQ<Double>(G.numberofVertices());
+		pq = new IndexMinPQ<Double>(G.getNumberOfVerticies());
 		distTo[0] = 0.0;
 		pq.insert(0, 0.0); // Initialize pq with 0, weight 0.
 		while (!pq.isEmpty())
@@ -50,7 +50,7 @@ public class PrimsAlgorithm {
 	}
 
 	public double weight()
-	{
+	{		
 		return 0;
 	}
 }

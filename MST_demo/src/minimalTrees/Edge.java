@@ -31,7 +31,7 @@ public class Edge implements Comparable<Edge> {
 		return vertex1;
 	}
 
-	public int other(int vertex) {
+	public int other(int vertex) { //takes in a vertex and checks if it is equal to vertex 1, since we want to get the other vertex return vertex 2. if its vertex 2 return vertex1. 
 		if (vertex == vertex1)
 			return vertex2;
 		else if (vertex == vertex2)
