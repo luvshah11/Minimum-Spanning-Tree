@@ -31,7 +31,7 @@ public class EdgeWeightedGraph implements Graph<Integer> {
 		for (int v = 0; v < V; v++)
 			adj[v] = new ArrayList<Edge>();
 	}
-
+	
 	
     /*
      *  INPUT FORMAT:
@@ -55,7 +55,7 @@ public class EdgeWeightedGraph implements Graph<Integer> {
 		
 		 String lines[] = result.split("\n");
 		 this.V = Integer.parseInt(lines[0]);
-		 this.E= Integer.parseInt(lines[1]);
+		 this.E = Integer.parseInt(lines[1]);
 		 adj = new ArrayList[V];
 			for (int v = 0; v < V; v++)
 				adj[v] = new ArrayList<Edge>();
