@@ -28,17 +28,7 @@ public class EdgeWeightedGraph{
 	private int totalEdges; // number of edges
 	private double totalWeight;
 	private Collection<Edge>[] adj; // adjacency lists
-	private Set<Edge> edgeSet = new TreeSet<>(); // treeset to make no duplicate edges
-	public EdgeWeightedGraph(Integer totalVertices) {
-		this.vertexCount = totalVertices;
-		this.totalEdges = 0;
-		adj = (Collection<Edge>[]) new Collection[totalVertices];
-		for (int vertex = 0; vertex < totalVertices; vertex++)
-			adj[vertex] = new ArrayList<Edge>();
-
-	}
-	
-	
+	private Set<Edge> edgeSet = new TreeSet<>(); // treeset to make no duplicate edges	
     /*
      *  INPUT FORMAT:
      *  <num_of_verts>
@@ -51,14 +41,11 @@ public class EdgeWeightedGraph{
      */
 	public EdgeWeightedGraph(InputStream in) throws IOException
 	{
-		
-
-
 		 // https://stackoverflow.com/questions/309424/how-do-i-read-convert-an-inputstream-into-a-string-in-java
 		 String result = new BufferedReader(new InputStreamReader(in))
 				   .lines().collect(Collectors.joining("\n"));
 		 
-		
+		 
 		 String lines[] = result.split("\n");
 		 this.vertexCount = Integer.parseInt(lines[0]);
 		 this.totalEdges = Integer.parseInt(lines[1]);
@@ -71,27 +58,24 @@ public class EdgeWeightedGraph{
 			 String cols[] = lines[i].split(" ");
 			 int v1 = Integer.parseInt(cols[0]);
 			 int v2 = Integer.parseInt(cols[1]);
-			 int w  = Integer.parseInt(cols[2]);
+			 double w  = Double.parseDouble(cols[2]);
 			 Edge tmp = new Edge(v1, v2, w);
 			 adj[v1].add(tmp);
 			 adj[v2].add(tmp);
-			 totalEdges++;
-			 
+			 totalEdges++;		 
 		 }
-		
-		
 	}
-	// See Exercise 4.3.9.
+
 	public int getNumberOfVerticies() 
 	{
 		return vertexCount;
 	}
 
 	public int getNumberOfEdges() {
-		return totalEdges;
+		return totalEdges/2;
 	}
 
-	public void addEssdge(Edge newEdge) 
+	public void addEdge(Edge newEdge) 
 	{
 		//each edge needs 2 verticies 
 		int vertex1 = newEdge.either(), vertex2 = newEdge.other(vertex1);
@@ -132,18 +116,18 @@ public class EdgeWeightedGraph{
 	
 	//citation https://algs4.cs.princeton.edu/43mst/EdgeWeightedGraph.java.html
 	public String toString(){ 
-	    StringBuilder s = new StringBuilder();
-	    s.append(this.getNumberOfVerticies()+ " " + this.getNumberOfEdges() + "\n");
-	    for (int v = 0; v < this.V(); v++)
+	    StringBuilder edgeWString = new StringBuilder();
+	    edgeWString.append("Number of verticies:" + this.getNumberOfVerticies()+ " " + "Number of edges:" + this.getNumberOfEdges() + "\n");
+	    for (int vertex = 0; vertex < this.getNumberOfVerticies(); vertex++)
 	    {
-	        s.append(v + " : ");
-	        for (Edge e: this.adj(v)) 
+	        edgeWString.append("Edge " + vertex + " : ");
+	        for (Edge edge: this.adj(vertex)) 
 	        {
-	            s.append(e.toString() + " ");
+	            edgeWString.append(edge.toString() + " ");
 	        }
-	        s.append("\n");
+	        edgeWString.append("\n");
 	    }
-	    return s.toString();
+	    return edgeWString.toString();
 
 	}
 

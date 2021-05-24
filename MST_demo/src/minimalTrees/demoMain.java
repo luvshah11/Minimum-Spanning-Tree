@@ -1,30 +1,30 @@
 package minimalTrees;
 
-public class demoMain {
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
-	public static void main(String[] args) {
+
+public class demoMain {
+	public static void main(String[] args ) throws IOException{
+		InputStream demoInput = new FileInputStream("C:\\Users\\User\\Desktop\\School Files\\Freshman Quarter 3\\CSC 301 Data Structures II\\Java\\MinimumSpanningTrees\\demoinput.txt");
 		// TODO Auto-generated method stub
 		System.out.println("Welcome to MST Demo");
-		
-		//TODO: 
-		/// Implement an EdgeWeigthed Graph object -
-		//Requires implementing other classes, Edge, and Graph
-		
-		EdgeWeightedGraph a = new EdgeWeightedGraph(0);
-		EdgeWeightedGraph b = new EdgeWeightedGraph(1);
-		EdgeWeightedGraph c = new EdgeWeightedGraph(-1);
+		EdgeWeightedGraph graphDemo = new EdgeWeightedGraph(demoInput);
+		System.out.println(graphDemo.toString());
 
-		EdgeWeightedGraph d = new EdgeWeightedGraph(5);
-		EdgeWeightedGraph e = new EdgeWeightedGraph(10);
-		EdgeWeightedGraph f = new EdgeWeightedGraph(50);
-		
 		///Implement Prim's Algorithm -
 		//In another class/interface, create a class called Prim's tree that generates an MST from prim's algorithm
 		//Include a Printing function to display what's in the class. 
-		
+		System.out.println("Prim's algorithm");
+		PrimsAlgorithm prims = new PrimsAlgorithm(graphDemo);
+		System.out.println(prims.toString());
 		///Implement Kurskal's Algorithm -
 		//same as 1. but with Kruskal.
-		
+		System.out.println("Kruskal's algorithm");
+		KruskalsAlgorithm kruskals = new KruskalsAlgorithm(graphDemo);
+		System.out.println(kruskals.toString());
 		///Generate a CTA edge wieghted graph-
 		//Weights are the total time spent sitting in the train. 
 		

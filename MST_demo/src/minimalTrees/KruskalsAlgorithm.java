@@ -47,7 +47,7 @@ public class KruskalsAlgorithm {
 	public String toString(){ 
 	    StringBuilder s = new StringBuilder();
 	    //lambda for every edge, print its vertices and weight 
-	    mst.forEach(e -> s.append("From vertex "+ e.other(e.either()) + ", to vertex " + e.either() + ", weighes: " + e.weight()));
+	    mst.forEach(e -> s.append("Edge" + e + "From vertex "+ e.other(e.either()) + ", to vertex " + e.either() + ", weighs: " + e.weight() + "\n"));
 	    return s.toString();
 	}
 

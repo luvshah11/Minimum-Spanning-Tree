@@ -55,7 +55,7 @@ public class PrimsAlgorithm {
 	{
 		StringBuilder s = new StringBuilder();
 	    //lambda for every edge, print its vertices and weight 
-	    this.edges().forEach(e -> s.append("From vertex "+ e.other(e.either()) + ", to vertex " + e.either() + ", weighes: " + e.weight()));
+	    this.edges().forEach(e -> s.append("From vertex "+ e.other(e.either()) + ", to vertex " + e.either() + ", weighs: " + e.weight()+ "\n"));
 	    
 	    return s.toString();
 	}
