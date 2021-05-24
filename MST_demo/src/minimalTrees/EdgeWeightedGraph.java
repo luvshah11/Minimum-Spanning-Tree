@@ -51,8 +51,6 @@ public class EdgeWeightedGraph{
      */
 	public EdgeWeightedGraph(InputStream in) throws IOException
 	{
-		
-
 
 		 // https://stackoverflow.com/questions/309424/how-do-i-read-convert-an-inputstream-into-a-string-in-java
 		 String result = new BufferedReader(new InputStreamReader(in))
@@ -134,7 +132,7 @@ public class EdgeWeightedGraph{
 	public String toString(){ 
 	    StringBuilder s = new StringBuilder();
 	    s.append(this.getNumberOfVerticies()+ " " + this.getNumberOfEdges() + "\n");
-	    for (int v = 0; v < this.V(); v++)
+	    for (int v = 0; v < this.getNumberOfVerticies(); v++)
 	    {
 	        s.append(v + " : ");
 	        for (Edge e: this.adj(v)) 
