@@ -56,6 +56,8 @@ public class EdgeWeightedGraph{
 		 
 		 for(int i = 2; i < lines.length; i++) {
 			 String cols[] = lines[i].split(" ");
+			 if(cols[0] == "//")
+				 continue;
 			 int v1 = Integer.parseInt(cols[0]);
 			 int v2 = Integer.parseInt(cols[1]);
 			 double w  = Double.parseDouble(cols[2]);
