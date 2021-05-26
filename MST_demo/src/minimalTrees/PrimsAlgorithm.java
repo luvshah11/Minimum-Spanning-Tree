@@ -64,7 +64,9 @@ public class PrimsAlgorithm {
 		double sum =0 ;
 		for(int x = 0; x < edgeTo.length; x++)
 		{
+			if(edgeTo[x]!=null) {
 			sum += edgeTo[x].weight();
+			}
 		}
 		return sum;
 	}

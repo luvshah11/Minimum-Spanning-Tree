@@ -13,6 +13,9 @@ public class KruskalsAlgorithm {
 		mst = new PriorityQueue<Edge>();
 
 		PriorityQueue<Edge> mstQueue = new PriorityQueue<Edge>(weightedGraph.getNumberOfEdges(), new CompareEdges());
+		for(Edge edge : weightedGraph.edges()) {
+			mstQueue.add(edge);
+		}
 		UnionFind uf = new UnionFind(weightedGraph.getNumberOfVerticies());
 		while (!mstQueue.isEmpty() && mst.size() < weightedGraph.getNumberOfVerticies() - 1) {
 			Edge edge = mstQueue.poll(); // Get min weight edge on pq
@@ -47,7 +50,9 @@ public class KruskalsAlgorithm {
 	public String toString(){ 
 	    StringBuilder s = new StringBuilder();
 	    //lambda for every edge, print its vertices and weight 
-	    mst.forEach(e -> s.append("Edge" + e + "From vertex "+ e.other(e.either()) + ", to vertex " + e.either() + ", weighs: " + e.weight() + "\n"));
+	    for(Edge e: mst) {
+	    	s.append("From vertex "+ e.other(e.either()) + ", to vertex " + e.either() + ", weighs: " + e.weight()+ "\n");
+	    }
 	    return s.toString();
 	}
 

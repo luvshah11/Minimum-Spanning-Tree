@@ -28,7 +28,6 @@ public class EdgeWeightedGraph{
 	private int totalEdges; // number of edges
 	private double totalWeight;
 	private Collection<Edge>[] adj; // adjacency lists
-	private Set<Edge> edgeSet = new TreeSet<>(); // treeset to make no duplicate edges	
     /*
      *  INPUT FORMAT:
      *  <num_of_verts>
@@ -92,7 +91,8 @@ public class EdgeWeightedGraph{
 		return adj[vertex]; 
 	}
 	
-	//get the weight of the enitre edgeweighted graph
+	//get the weight of the entire edgeweighted graph
+	
 	public double getWeight() {
 		return totalWeight;
 	}
@@ -108,7 +108,7 @@ public class EdgeWeightedGraph{
 				}
 			}
 		}
-		return edges(); //return edge collection
+		return edges; //return edge collection
 	}
 
 	// See page 609.

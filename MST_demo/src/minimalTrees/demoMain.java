@@ -8,7 +8,7 @@ import java.io.InputStream;
 
 public class demoMain {
 	public static void main(String[] args ) throws IOException{
-		InputStream demoInput = new FileInputStream("C:\\Users\\User\\Desktop\\School Files\\Freshman Quarter 3\\CSC 301 Data Structures II\\Java\\MinimumSpanningTrees\\demoinput.txt");
+		InputStream demoInput = new FileInputStream("C:\\Users\\User\\Documents\\GitHub\\Minimum-Spanning-Tree\\MST_demo\\demoinput.txt");
 		// TODO Auto-generated method stub
 		System.out.println("Welcome to MST Demo");
 		EdgeWeightedGraph graphDemo = new EdgeWeightedGraph(demoInput);
