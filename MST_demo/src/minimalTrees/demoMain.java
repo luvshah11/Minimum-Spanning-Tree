@@ -29,7 +29,11 @@ public class demoMain {
 		//Weights are the total time spent sitting in the train. 
 		
 		
-		
+		//graph tests: 
+		//the graph demo weight is 1.84, see attatched image DemoInput.png
+		MSTTest demoTest = new MSTTest(); 
+		demoTest.testKruskal(graphDemo, 1.84);
+		demoTest.testPrimms(graphDemo, 1.84);
 	}
 
 }

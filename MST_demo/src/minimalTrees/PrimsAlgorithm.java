@@ -67,6 +67,5 @@ public class PrimsAlgorithm {
 			sum += edgeTo[x].weight();
 		}
 		return sum;
-
 	}
 }
