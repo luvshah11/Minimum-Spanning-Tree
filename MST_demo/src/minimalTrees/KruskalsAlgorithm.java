@@ -32,7 +32,7 @@ public class KruskalsAlgorithm {
 		//set weight()
 		this.mst.forEach(e -> { //lambda ( Parameter -> Expression) Example: Suppose I have a list of objects to print
 			if(e != null)											//List<int> happyList
-				weight += e.weight();								//happyList.forEach(for each element in the list -< perform some function)
+				weight += e.weight();								//happyList.forEach(for each element in the list -> perform some function)
 			else													//its like a for loop, but nerdy-er
 				weight = 0;});
 	}
