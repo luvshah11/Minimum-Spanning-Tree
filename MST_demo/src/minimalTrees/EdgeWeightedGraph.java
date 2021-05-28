@@ -55,15 +55,15 @@ public class EdgeWeightedGraph{
 		 
 		 for(int i = 2; i < lines.length; i++) {
 			 String cols[] = lines[i].split(" ");
-			 if(cols[0].contains("//"))
-				 break;
-			 int v1 = Integer.parseInt(cols[0]);
-			 int v2 = Integer.parseInt(cols[1]);
-			 double w  = Double.parseDouble(cols[2]);
-			 Edge tmp = new Edge(v1, v2, w);
-			 adj[v1].add(tmp);
-			 adj[v2].add(tmp);
-			 totalEdges++;		 
+			 if(!cols[0].contains("//")) {
+				 int v1 = Integer.parseInt(cols[0]);
+				 int v2 = Integer.parseInt(cols[1]);
+				 double w = Double.parseDouble(cols[2]);
+				 Edge tmp = new Edge(v1, v2, w);
+				 adj[v1].add(tmp);
+				 adj[v2].add(tmp);
+				 totalEdges++;
+			 }
 		 }
 	}
 
