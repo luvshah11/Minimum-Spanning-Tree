@@ -51,8 +51,8 @@ public class demoMain {
 		demoTest.testPrimms(graphDemo, 1.84);
 		
 		MSTTest CTATest = new MSTTest();
-		CTATest.testKruskal(ctaMap, 0);
-		CTATest.testPrimms(ctaMap, 0);
+		CTATest.testKruskal(ctaMap, 52.9f);
+		CTATest.testPrimms(ctaMap, 52.9f);
 	}
 
 }
