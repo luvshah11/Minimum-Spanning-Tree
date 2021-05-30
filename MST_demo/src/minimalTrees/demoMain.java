@@ -8,12 +8,13 @@ public class demoMain {
 	public static void main(String[] args ) throws IOException{
 		InputStream demoInput = new FileInputStream("demoinput.txt");
 		InputStream ctaInput = new FileInputStream("cta.txt");
+		InputStream circleInput = new FileInputStream("ctaWithCircleLine.txt");
+		
 		// TODO Auto-generated method stub
 		System.out.println("Welcome to MST Demo");
 		EdgeWeightedGraph graphDemo = new EdgeWeightedGraph(demoInput);		
 		System.out.print(graphDemo.toString());
 		System.out.println("Weight of Edge Weighted Graph: " + graphDemo.getWeight() + "\n");
-
 
 		///Implement Prim's Algorithm -
 		//In another class/interface, create a class called Prim's tree that generates an MST from prim's algorithm
@@ -42,6 +43,15 @@ public class demoMain {
 		System.out.print(CTAkruskals.toString());
 		System.out.println("Weight of Kruskal's CTA MST:" + CTAkruskals.weight());
 		
+		EdgeWeightedGraph circleMap = new EdgeWeightedGraph(circleInput);
+		System.out.print(circleMap.toString());
+		System.out.println("CTA with Circle Line Map weight: " + circleMap.getWeight() + "\n");
+		PrimsAlgorithm circlePrims = new PrimsAlgorithm(circleMap);
+		System.out.print(circlePrims.toString());
+		System.out.println("Weight of Prim's CTA MST: " + circlePrims.weight() + "\n");
+		KruskalsAlgorithm circleKruskals = new KruskalsAlgorithm(circleMap);
+		System.out.print(circleKruskals.toString());
+		System.out.println("Weight of Kruskal's CTA MST:" + circleKruskals.weight());
 		
 		
 		//graph tests: 
@@ -51,8 +61,10 @@ public class demoMain {
 		demoTest.testPrimms(graphDemo, 1.84);
 		
 		MSTTest CTATest = new MSTTest();
-		CTATest.testKruskal(ctaMap, 0);
-		CTATest.testPrimms(ctaMap, 0);
+		CTATest.testKruskal(ctaMap, 52.9f);
+		CTATest.testPrimms(ctaMap, 52.9f);
+		
+		
 	}
 
 }
