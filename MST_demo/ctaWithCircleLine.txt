@@ -1,5 +1,5 @@
-84
-83
+91
+97
 // redline
 // 1 howard
 // 2 jarvis
@@ -184,3 +184,21 @@
 82 35 .2
 36 83 .3
 83 37 .2
+//Circle Line
+//84 Elston
+//85 Chicago
+//86 Madison United Center
+//87 polk
+//88 18th-pilsen
+//89 Blue Island 
+//90 ashalnd/archer
+13 84 .7
+84 59 .8
+59 85 .5
+85 40 .4
+40 86 .25
+86 65 .25
+65 87 .25
+87 88 1.5
+88 89 1
+89 90 1.25
