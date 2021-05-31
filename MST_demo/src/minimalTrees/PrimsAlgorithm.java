@@ -9,7 +9,7 @@ public class PrimsAlgorithm {
 	private double[] distTo; // distTo[w] = edgeTo[w].weight()
 	private boolean[] marked; // true if v on tree
 	private IndexMinPQ<Double> pq; // eligible crossing edges
-
+ 
 
 	public PrimsAlgorithm(EdgeWeightedGraph G)
 	{
@@ -18,35 +18,40 @@ public class PrimsAlgorithm {
 		marked = new boolean[G.getNumberOfVerticies()];
 		for (int v = 0; v < G.getNumberOfVerticies(); v++)
 			distTo[v] = Double.POSITIVE_INFINITY;
-		pq = new IndexMinPQ<Double>(G.getNumberOfVerticies());
-		distTo[0] = 0.0;
+		pq = new IndexMinPQ<Double>(G.getNumberOfVerticies()); //create a new minimum priority queue
+		distTo[0] = 0.0; 
 		pq.insert(0, 0.0); // Initialize pq with 0, weight 0.
-		while (!pq.isEmpty())
-			visit(G, pq.delMin()); // Add closest vertex to tree.
+		//initialize an empty spot of 0 for the minimum part of the priority queue
 		
-		//this.pq.forEach(e -> System.out.println(e.toString()));
+		while (!pq.isEmpty()) //while the minimum priority queue still has an edge stored in it
+			visit(G, pq.delMin()); // Add closest vertex to tree.
 	}
-	private void visit(EdgeWeightedGraph G, int v) { // Add v to tree; update data structures.
-		marked[v] = true;
-		for (Edge e : G.adj(v)) {
-			int w = e.other(v);
-			if (marked[w])
-				continue; // v-w is ineligible.
-			if (e.weight() < distTo[w]) { // Edge e is new best connection from tree to w.
-				edgeTo[w] = e;
-				distTo[w] = e.weight();
-				if (pq.contains(w))
-					pq.changeKey(w, distTo[w]);
+	private void visit(EdgeWeightedGraph G, int sourcevertex) { // Add source vertex to tree; update data structures.
+		marked[sourcevertex] = true;
+		for (Edge edge : G.adj(sourcevertex)) { //for every edge in the graph, starting from the source vertex
+			int currVertex = edge.other(sourcevertex); //look at the vertex 
+			if (marked[currVertex]) //if the vertex has been marked
+				continue; // there is a cycle, this edge is ineligible.
+			if (edge.weight() < distTo[currVertex]) { // Edge is new best (lowest weighted) connection from current tree to the next vertex.
+				edgeTo[currVertex] = edge; //the edge connected to the current connected vertex in the MST is this edge
+				distTo[currVertex] = edge.weight(); //the weight of the edge in the MST
+				
+				//checking for duplicates
+				if (pq.contains(currVertex)) //if the priority queue contains this vertex
+					pq.changeKey(currVertex, distTo[currVertex]); //change the value at this vertex
 				else
-					pq.insert(w, distTo[w]);
+					pq.insert(currVertex, distTo[currVertex]); //insert the value into the priority queue
 			}
 		}
 	}
 
 	public Iterable<Edge> edges()
-	{
+	{ //retrieving the edges in the created MST
 		Collection<Edge> mst = new ArrayList<Edge>();
-		for (int v = 1; v < edgeTo.length; v++)
+		
+		//FIX THIS ERROR: WHY DID WE MAKE THIS 1??
+		
+		for (int v = 1; v < edgeTo.length; v++) 
 			mst.add(edgeTo[v]);
 		return mst;
 	}
