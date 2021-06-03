@@ -41,17 +41,17 @@ public class demoMain {
 		System.out.println("Weight of Prim's CTA MST: " + CTAprims.weight() + "\n");
 		KruskalsAlgorithm CTAkruskals = new KruskalsAlgorithm(ctaMap);
 		System.out.print(CTAkruskals.toString());
-		System.out.println("Weight of Kruskal's CTA MST:" + CTAkruskals.weight());
+		System.out.println("Weight of Kruskal's CTA MST:" + String.valueOf(CTAkruskals.weight()).substring(0,4));
 		
 		EdgeWeightedGraph circleMap = new EdgeWeightedGraph(circleInput);
 		System.out.print(circleMap.toString());
 		System.out.println("CTA with Circle Line Map weight: " + circleMap.getWeight() + "\n");
 		PrimsAlgorithm circlePrims = new PrimsAlgorithm(circleMap);
 		System.out.print(circlePrims.toString());
-		System.out.println("Weight of Prim's CTA MST: " + circlePrims.weight() + "\n");
+		System.out.println("Weight of Prim's Circle Line Map MST: " + circlePrims.weight() + "\n");
 		KruskalsAlgorithm circleKruskals = new KruskalsAlgorithm(circleMap);
 		System.out.print(circleKruskals.toString());
-		System.out.println("Weight of Kruskal's CTA MST:" + circleKruskals.weight());
+		System.out.println("Weight of Kruskal's Circle Line Map MST:" + String.valueOf(circleKruskals.weight()).substring(0,5));
 		
 		
 		//graph tests: 
