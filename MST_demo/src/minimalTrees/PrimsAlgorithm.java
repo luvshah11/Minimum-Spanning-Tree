@@ -48,7 +48,7 @@ public class PrimsAlgorithm {
 	public Iterable<Edge> edges()
 	{ //retrieving the edges in the created MST
 		Collection<Edge> mst = new ArrayList<Edge>();
-		for (int v = 0; v < edgeTo.length; v++)
+		for (int v = 1; v < edgeTo.length; v++)
 
 			mst.add(edgeTo[v]);
 		return mst;

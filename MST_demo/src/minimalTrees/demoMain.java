@@ -6,11 +6,13 @@ import java.io.InputStream;
 
 public class demoMain {
 	public static void main(String[] args ) throws IOException{
+		
+		//Input the matricies
 		InputStream demoInput = new FileInputStream("demoinput.txt");
 		InputStream ctaInput = new FileInputStream("cta.txt");
 		InputStream circleInput = new FileInputStream("ctaWithCircleLine.txt");
 		
-		// TODO Auto-generated method stub
+		
 		System.out.println("Welcome to MST Demo");
 		EdgeWeightedGraph graphDemo = new EdgeWeightedGraph(demoInput);		
 		System.out.print(graphDemo.toString());
@@ -43,6 +45,7 @@ public class demoMain {
 		System.out.print(CTAkruskals.toString());
 		System.out.println("Weight of Kruskal's CTA MST:" + String.valueOf(CTAkruskals.weight()).substring(0,4));
 		
+		//The Circle Line 
 		EdgeWeightedGraph circleMap = new EdgeWeightedGraph(circleInput);
 		System.out.print(circleMap.toString());
 		System.out.println("CTA with Circle Line Map weight: " + circleMap.getWeight() + "\n");
