@@ -10,7 +10,6 @@ public class KruskalsAlgorithm {
 
 	public KruskalsAlgorithm(EdgeWeightedGraph weightedGraph) {
 		mst = new PriorityQueue<Edge>();
-
 		PriorityQueue<Edge> mstQueue = new PriorityQueue<Edge>(weightedGraph.getNumberOfEdges(), new CompareEdges());
 		for(Edge edge : weightedGraph.edges()) {
 			mstQueue.add(edge);
@@ -18,9 +17,7 @@ public class KruskalsAlgorithm {
 		UnionFind uf = new UnionFind(weightedGraph.getNumberOfVerticies());
 		while (!mstQueue.isEmpty() && mst.size() < weightedGraph.getNumberOfVerticies() - 1) {
 			Edge edge = mstQueue.poll(); // Get min weight edge on pq
-			
-			int vertex1 = edge.either(), vertex2 = edge.other(vertex1); // and whichever vertice matches the edge value
-			
+			int vertex1 = edge.either(), vertex2 = edge.other(vertex1); // and whichever vertices matches the edge value
 			if (uf.connected(vertex1, vertex2)) { //if they are in a cycle, ignore those edges
 				continue; // Ignore ineligible edges.
 			}
@@ -37,7 +34,7 @@ public class KruskalsAlgorithm {
 	}
 
 	public Iterable<Edge> edges() {
-		//return the edges in the new minimum spanning tree created with the algorithm, NOT the original weighed edge graph.
+		//return the edges in the new minimum spanning tree created with the algorithm
 		return mst;
 	}
 

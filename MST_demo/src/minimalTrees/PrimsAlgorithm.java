@@ -46,7 +46,7 @@ public class PrimsAlgorithm {
 	public Iterable<Edge> edges()
 	{
 		Collection<Edge> mst = new ArrayList<Edge>();
-		for (int v = 1; v < edgeTo.length; v++)
+		for (int v = 0; v < edgeTo.length; v++)
 			mst.add(edgeTo[v]);
 		return mst;
 	}
